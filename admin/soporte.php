@@ -13,7 +13,7 @@ include("navbar.php");
             <div class="card-body">
                 <h5 class="card-title">Medio de contacto</h5>
                 <p class="card-text">Correo Electrónico: informatica@munipinto.cl</p>
-                <a href="index.php" class="btn btn-primary">Regresar</a>
+                <a href="inicio.php" class="btn btn-primary">Regresar</a>
             </div>
             <div class="card-footer text-muted">
                 Responderemos su mensaje a la brevedad

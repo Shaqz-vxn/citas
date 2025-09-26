@@ -4,7 +4,7 @@ include("model/conexion.php");
 
 try {
     // Consulta SQL para obtener las citas de la tabla "Reservas"
-    $sql = "SELECT ID AS id, Nombre AS title, Fecha AS start, Hora AS time FROM Reservas";
+$sql = "SELECT ID AS id, Nombre AS title, CONCAT(Fecha, 'T', Hora) AS start FROM Reservas";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 
@@ -39,7 +39,6 @@ $citas_json = json_encode($citas);
             },
             dayHeaderFormat: {
                 weekday: 'short',
-                month: 'numeric',
                 day: 'numeric'
             },
             views: {
