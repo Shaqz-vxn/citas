@@ -8,10 +8,8 @@ include "navbar.php";
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4 text-center">
-      <h2>Reserva fácil</h2>
-      <h5>Datos de la Empresa:</h5>
+      <h3>Municipalidad de Pinto</h3>
       <img src="img/logo.png" class="rounded mx-auto d-block border" width="80%" alt="...">
-      <p><kbd>Reserva con un solo clic</kbd></p>
       <h3>Accesos rapidos</h3>
       <p>Te presentamos algunas ligas de acceso.</p>
       <ul class="nav nav-pills flex-column">
@@ -19,7 +17,7 @@ include "navbar.php";
           <a class="nav-link" href="mediosContacto.php">Medios de contacto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >Acerca de</a>
+          <a class="nav-link" href="https://www.municipalidaddepinto.cl">Acerca de</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"></a>
@@ -31,9 +29,9 @@ include "navbar.php";
     
     <div class="col-sm-8">
       <div class="text-justify">
-          <p class="alert alert-info">Has clic en el siguiente botón para iniciar tu reserva en el sistema, en cuánto sea procesada
-            se te enviará un mensaje de confirmación al correo electrónico que ingreses en el formulario. 
-            <br><b>Una forma mas fácil de reservar con un solo clic"</b>.
+          <p class="alert alert-info">Haz clic en el siguiente botón para iniciar tu reserva en el sistema, en cuánto sea procesada
+            se te enviará un mensaje de confirmación al correo electrónico ingresado en el formulario. 
+            <br><b>Una forma mas fácil de reservar con un solo clic</b>.
           </p>
       </div>
       <?php 

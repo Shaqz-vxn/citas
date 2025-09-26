@@ -13,7 +13,7 @@ include "navbar.php";
                     <p>Gracias por enviar tu formulario de reservación. Hemos recibido tu solicitud y estamos procesándola. Por favor, espera nuestra confirmación.</p>
                     <hr>
                     <p class="mb-0">Tu reserva está en proceso. ¡Gracias por elegirnos!</p>
-                    <p>Redirigiendo en <span id="countdown">10</span> segundos...</p>
+                    <p>Redirigiendo en <span id="countdown">20</span> segundos...</p>
                 </div>
             </div>
         </div>

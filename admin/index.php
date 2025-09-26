@@ -1,4 +1,6 @@
 <?php
+include("../header.php");
+include("../navbar.php");
 session_start();
 
 // Incluye el archivo de conexión a la base de datos

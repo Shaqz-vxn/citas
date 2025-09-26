@@ -4,10 +4,9 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="admin/">Administrativo</a>
-      </li> 
-    </ul>
+    <div class="navbar-nav">
+      <a class="nav-link" href="admin/">Administrativo</a>
+      <a class="nav-item nav-link active" href="soporte.php">Soporte</a><!--disabled-->
+    </div>
   </div>  
 </nav>

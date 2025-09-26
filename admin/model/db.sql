@@ -9,6 +9,12 @@ CREATE TABLE `usuarios` (
   `password` varchar(256) COLLATE utf8_spanish2_ci NOT NULL,
   `modificado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `usuarios`
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
 
 
 

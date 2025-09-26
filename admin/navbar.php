@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="./inicio.php">Inicio <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link active" href="soporte.php">Soporte</a><!--disabled-->
+      <a class="nav-item nav-link active" href="../soporte.php">Soporte</a><!--disabled-->
       <a class="nav-item nav-link active" href="cambiarPassword.php">Cambiar contraseña</a>
       <a class="nav-item nav-link disabled" style="color:white">Bienvenido, <?php echo $nombreUsuario; ?>!</a>
       <a class="btn btn-danger" href="metodos/cerrar_sesion.php">Cerrar Sesión</a>

@@ -1,5 +1,5 @@
-        // Redirección después de 5 segundos (5000 milisegundos)
-        let countdown = 10;
+        // Redirección después de 20 segundos
+        let countdown = 20;
         let countdownElement = document.getElementById('countdown');
         
         function updateCountdown() {
