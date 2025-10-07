@@ -37,5 +37,15 @@ CREATE TABLE Contacto (
   Descripcion VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Disponibilidades(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  fecha DATE NOT NULL,
+  hora TIME NOT NULL,
+  estado ENUM('disponible','ocupado') NOT NULL DEFAULT 'disponible',
+  reserva_id INT DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_fecha_hora (fecha,hora)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 INSERT INTO Contacto (Descripcion) VALUES ('Ingresa tus medios de contacto');
 
