@@ -30,27 +30,32 @@ $citas_json = json_encode($citas);
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            events: <?php echo $citas_json; ?>, // Carga las citas desde PHP
-            locale: 'es', // Cambia el idioma a español
-            eventTimeFormat: {
-                hour: 'numeric',
-                minute: '2-digit',
-                meridiem: 'short'
-            },
-            dayHeaderFormat: {
-                weekday: 'short',
-                day: 'numeric'
-            },
-            views: {
-                dayGridMonth: {},
-                timeGridWeek: {},
-                timeGridDay: {}
-            },
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
+            locale: 'es',
+            headerToolBar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth, timeGridWeek,timeGridDay' },
+            dayHeaderFormat: {weekday: 'short', day: 'numeric' },
+            showNonCurrentDAtes: false,
+            fixedWeekCount: false,
+            events: [
+                //Disponibles en verde
+                {
+                    url: 'public/list_slots.php',
+                    color: 'green',
+                    textColor: 'white'
+                },
+                //Reservados en rojo
+                {
+                    url: 'admin/list_reservas_json.php',
+                    color: 'red',
+                    textColor: 'white'
+                }
+            ],
+            eventClick: function(info){
+                var id = info.event.id;
+                if(id && id.startsWith('slot-')){
+                    var slot_id = info.event.extendedProps.slot_id;
+                }
+            }
+            
             navLinks: true, // Habilitar enlaces en los eventos para navegar
             editable: false // Permitir arrastrar y soltar eventos para moverlos
         });
