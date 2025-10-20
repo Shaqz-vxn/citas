@@ -1,3 +1,5 @@
+<form id="formReserva" action="metodos/insert.php" method="post">
+
 <form action="metodos/insert.php" method="post">
     <p class="text-danger"><b>Los datos con (*) son obligatorios.</b></p>
 

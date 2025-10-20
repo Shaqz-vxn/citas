@@ -32,6 +32,9 @@ if ($existeCita > 0) {
     # Insertar el nuevo registro si no hay conflicto
     $sentencia = $db->prepare("INSERT INTO reservas(nombre, apellidos, correo, servicio, fecha, hora, mensajeadicional, estado)
     VALUES(?,?,?,?,?,?,?,?)");
+    $update = $conexion->prepare("UPDATE Disponibilidades SET estado='ocupado' WHERE fecha=? AND hora=?");
+    $update->bind_param("ss", $fecha, $hora);
+    $update->execute();
     
     if ($sentencia->execute([$nombre, $apellidos, $correo, $servicio, $fecha, $hora, $mensaje, $estado])) {
         header('Location: ../exito.php'); // Redirigir si la inserción fue exitosa.

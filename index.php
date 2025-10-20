@@ -34,11 +34,11 @@ include "navbar.php";
             <br><b>Una forma mas fácil de reservar con un solo clic</b>.
           </p>
       </div>
-      <?php 
-        include "modal_reserva.php";
-        #include "metodos/form_insert.php";
-      ?>
-
+      <!--Calendario de Disponibilidades-->
+      <div id = "calendar" style="max-width: 900px; margin:20px auto"></div>
+      
+      <?php include "modal_reserva.php;"?>
+      <script src="js/calendar.js"></script>
       <hr>
       <div class="text-justify">
           <p class="alert alert-warning">Quieres consultar el estatus de tu reserva?, no has recibido el mensaje
