@@ -1,4 +1,5 @@
 <?php 
+include("admin/model/conexion.php");
 include "header.php";
 include "navbar.php";
 ?>
@@ -19,9 +20,6 @@ include "navbar.php";
         <li class="nav-item">
           <a class="nav-link" href="https://www.municipalidaddepinto.cl">Acerca de</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"></a>
-        </li>
       </ul>
       <hr class="d-sm-none">
     </div>
@@ -34,25 +32,22 @@ include "navbar.php";
             <br><b>Una forma mas fácil de reservar con un solo clic</b>.
           </p>
       </div>
+
       <!--Calendario de Disponibilidades-->
-      <div id = "calendar" style="max-width: 900px; margin:20px auto"></div>
       
-      <?php include "modal_reserva.php;"?>
-      <script src="js/calendar.js"></script>
+      <div id = "calendar" style="max-width: 900px; margin:20px auto"></div>
+      <?php include "modal_reserva.php"; ?>
+      
       <hr>
       <div class="text-justify">
-          <p class="alert alert-warning">Quieres consultar el estatus de tu reserva?, no has recibido el mensaje
-            de confirmación o falló el envio?.
-          </p>
+        <p class="alert alert-warning">
+          ¿Quieres consultar el estado de tu reserva o no recibiste el correo de confirmación?
+          <br>Puedes escribirnos a <b>informatica@munipinto.cl</b>
+        </p>
       </div>
-
-
     </div>
   </div>
 </div>
-
-
-
-
-
+    
 <?php include "footer.php";?>
+<script src="js/calendar.js"></script>

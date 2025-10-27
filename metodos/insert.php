@@ -1,45 +1,49 @@
 <?php
-#prueba de envio de datos
-#print_r($_POST);
-
-# Verificar si se ha enviado el formulario
+// Verificar si se envió el formulario correctamente
 if (!isset($_POST['oculto'])) {
-    exit(); // Si no se ha enviado, salir del script.
+    exit("Acceso no autorizado.");
 }
 
-# Incluir el archivo de conexión a la base de datos
+// Incluir conexión a la base de datos
 include '../admin/model/conexion.php';
 
-# Obtener los datos del formulario
-$nombre = $_POST['nombre'];
+// Obtener datos del formulario
+$nombre    = $_POST['nombre'];
 $apellidos = $_POST['apellidos'];
-$correo = $_POST['correo'];
-$servicio = $_POST['servicio'];
-$fecha = $_POST['fecha'];
-$hora = $_POST['hora'];
-$mensaje = $_POST['mensaje'];
-$estado = $_POST['estado'];
+$correo    = $_POST['correo'];
+$servicio  = $_POST['servicio'];
+$fecha     = $_POST['fecha'];
+$hora      = $_POST['hora'];
+$mensaje   = $_POST['mensaje'];
+$estado    = $_POST['estado'];
 
-# Verificar si ya existe una cita en la misma fecha y hora
-$consulta = $db->prepare("SELECT COUNT(*) FROM reservas WHERE fecha = ? AND hora = ?");
-$consulta->execute([$fecha, $hora]);
-$existeCita = $consulta->fetchColumn();
+// Verificar si ya existe una reserva en esa fecha y hora
+try {
+    $consulta = $db->prepare("SELECT COUNT(*) FROM Reservas WHERE Fecha = ? AND Hora = ?");
+    $consulta->execute([$fecha, $hora]);
+    $existeCita = $consulta->fetchColumn();
 
-if ($existeCita > 0) {
-    header('Location: ../error.php');
-    echo 'Ya existe una cita programada para la misma fecha y hora.';
-} else {
-    # Insertar el nuevo registro si no hay conflicto
-    $sentencia = $db->prepare("INSERT INTO reservas(nombre, apellidos, correo, servicio, fecha, hora, mensajeadicional, estado)
-    VALUES(?,?,?,?,?,?,?,?)");
-    $update = $conexion->prepare("UPDATE Disponibilidades SET estado='ocupado' WHERE fecha=? AND hora=?");
-    $update->bind_param("ss", $fecha, $hora);
-    $update->execute();
-    
-    if ($sentencia->execute([$nombre, $apellidos, $correo, $servicio, $fecha, $hora, $mensaje, $estado])) {
-        header('Location: ../exito.php'); // Redirigir si la inserción fue exitosa.
-    } else {
-        echo 'Error al insertar datos.';
+    if ($existeCita > 0) {
+        header('Location: ../error.php');
+        exit();
     }
+
+    // Insertar nueva reserva
+    $sentencia = $db->prepare("INSERT INTO Reservas (Nombre, Apellidos, Correo, Servicio, Fecha, Hora, MensajeAdicional, Estado)
+                               VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $insertado = $sentencia->execute([$nombre, $apellidos, $correo, $servicio, $fecha, $hora, $mensaje, $estado]);
+
+    // Si la inserción fue exitosa, actualizar la disponibilidad
+    if ($insertado) {
+        $update = $db->prepare("UPDATE Disponibilidades SET estado = 'ocupado' WHERE fecha = ? AND hora = ?");
+        $update->execute([$fecha, $hora]);
+
+        header('Location: ../exito.php');
+        exit();
+    } else {
+        echo "Error al registrar la reserva.";
+    }
+} catch (PDOException $e) {
+    echo "Error en la base de datos: " . $e->getMessage();
 }
 ?>
