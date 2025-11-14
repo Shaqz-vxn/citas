@@ -22,8 +22,8 @@ try{
             $color = '#dc3545';
             $titulo = 'Reservado: ' . substr($s['hora'], 0 ,5);
         } else {
-            $color = '#6c757d';
-            $titulo = 'Ocupado: ' . substr($s['hora'], 0, 5);
+            //$color = '#6c757d';
+            //$titulo = 'Ocupado: ' . substr($s['hora'], 0, 5);
         }
 
         $eventos[] = [

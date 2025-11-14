@@ -64,11 +64,9 @@ $persona = $sentencia->fetch(PDO::FETCH_OBJ);
             <div class="form-group">
                 <label for="estado">Estado de la cita:</label>
                 <select class="form-control" id="estado" name="estado">
-                    <option value="<?php echo ($persona->Estado); ?>"><?php echo ($persona->Estado); ?></option>
                     <option value="" disabled>Elige estado de la cita</option>
                     <option value="Confirmado">Confirmado</option>
                     <option value="Cancelado">Cancelado</option>
-                    <option value="Pendiente">Pendiente</option>
                 </select>
                 <kbd>
                     <small class="text-white">(Estado actual: <?php echo ($persona->Estado); ?>)</small>

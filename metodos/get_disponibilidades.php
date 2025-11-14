@@ -3,6 +3,7 @@ include '../admin/model/conexion.php';
 
 $sql = "SELECT id, fecha, hora, estado FROM Disponibilidades";
 $result = $conexion->query($sql);
+$conexion->query("DELETE FROM Disponibilidades WHERE fecha < CURDATE()");
 
 $events = [];
 while ($row = $result->fetch_assoc()){

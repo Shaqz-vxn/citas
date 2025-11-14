@@ -35,7 +35,7 @@ try {
 
     // Si la inserción fue exitosa, actualizar la disponibilidad
     if ($insertado) {
-        $update = $db->prepare("UPDATE Disponibilidades SET estado = 'ocupado' WHERE fecha = ? AND hora = ?");
+        $update = $db->prepare("UPDATE Disponibilidades SET estado = 'reservado' WHERE fecha = ? AND hora = ?");
         $update->execute([$fecha, $hora]);
 
         header('Location: ../exito.php');

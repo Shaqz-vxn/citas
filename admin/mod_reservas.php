@@ -51,9 +51,6 @@ $dato = $sentencia->fetchAll(PDO::FETCH_OBJ);
                                         $clase_color = '';
 
                                         switch ($estado) {
-                                            case 'Pendiente':
-                                                $clase_color = 'text-warning'; // Amarillo para Pendiente
-                                                break;
                                             case 'Cancelado':
                                                 $clase_color = 'text-danger'; // Rojo para Cancelado
                                                 break;

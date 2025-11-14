@@ -92,7 +92,7 @@ include("navbar.php");
 
     </div></div><div class="container mt-4"> <div class="card">
         <div class="card-header text-center">
-            <p class="text-secondary mb-0"><b>Tus citas y horas disponibles</b></p> </div>
+            <p class="text-secondary mb-0"><b>Horas disponibles y reservadas</b></p> </div>
         <div class="card-body">
             <?php include "calendario.php"; ?>
         </div>

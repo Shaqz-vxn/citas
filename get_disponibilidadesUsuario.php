@@ -1,6 +1,7 @@
 <?php
 include 'admin/model/conexion.php';
 
+//$conexion->query("DELETE FROM Disponibilidades WHERE fecha < CURDATE()");
 $sql = "SELECT id, fecha, hora, estado FROM Disponibilidades WHERE estado='disponible'";
 $stmt = $db->prepare($sql);
 $stmt->execute();
@@ -11,13 +12,13 @@ foreach ($rows as $r) {
     $horaFormateada = substr($r['hora'], 0, 5);
     $events[] = [
         'id' => $r['id'],
-        'title' => 'Disponible ✓',
+        'title' => 'Disponible',
         'start' => $r['fecha'].'T'.$r['hora'],
         'end' => $r['fecha'].'T'.$r['hora'],
-        'color' => '#28a745',
-        'textColor' => '#ffffff',
-        'backgroundColor' => '#28a745',
-        'borderColor' => '#28a745',
+        'color' => '#ffffff',
+        'textColor' => '#000000ff',
+        'backgroundColor' => '#3bc550ff',
+        'borderColor' => '#ffffff',
         'display' => 'block',
         'extendedProps' => [
             'estado' => $r['estado'],
