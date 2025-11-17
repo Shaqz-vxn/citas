@@ -21,9 +21,9 @@ try{
         } else if ($s['estado'] == 'reservado') {
             $color = '#dc3545';
             $titulo = 'Reservado: ' . substr($s['hora'], 0 ,5);
-        } else {
-            //$color = '#6c757d';
-            //$titulo = 'Ocupado: ' . substr($s['hora'], 0, 5);
+        } else if($s['estado'] == 'cancelado'){
+            $color = '#6c757d';
+            $titulo = 'Cancelado: ' . substr($s['hora'], 0, 5);
         }
 
         $eventos[] = [
@@ -32,7 +32,8 @@ try{
             'start' => $s['fecha'] .'T'.$s['hora'],
             'color' => $color,
             'extendedProps' => [
-                'estado' => $s['estado']
+                'estado' => $s['estado'],
+                'hora' => $s['hora']
             ]
         ];
     }

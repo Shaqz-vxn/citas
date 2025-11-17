@@ -22,6 +22,11 @@ $estado = $_POST["estado"];
 #sentencia sql para insertar registros actualizados
 $sentencia = $db->prepare("UPDATE reservas SET Nombre=?, Apellidos=?, Correo=?, Servicio=?, Fecha=?, Hora=?, MensajeAdicional=?, Estado=? WHERE ID=?;");
 $resultado = $sentencia-> execute([$nombre, $apellidos, $correo, $servicio,$fecha, $hora, $mensaje, $estado, $id2]);
+if ($estado === "Cancelado") {
+    // Liberar la hora en disponibilidades
+    $sql = $db->prepare("UPDATE disponibilidades SET Estado='cancelado' WHERE Fecha=? AND Hora=?");
+    $sql->execute([$fecha, $hora]);
+}
 
 #validar una direccion en caso de que se actualicen correctamente los datos
 if ($resultado === true) {

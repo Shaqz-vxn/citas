@@ -27,6 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar_hora'])){
 if (isset($_GET['msg']) && $_GET['msg'] == 'ok'){
     $success = "Hora agregada correctamente.";
 }
+if (isset($_GET['msg']) && $_GET['msg'] == 'eliminado') {
+    $success = "Hora disponible eliminada correctamente.";
+}
+
+if (isset($_GET['error']) && $_GET['error'] == 'reservada') {
+    $error = "No puedes eliminar una hora que ya está reservada.";
+}
+
 
 include("header.php");
 include("navbar.php");
