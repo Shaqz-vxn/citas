@@ -81,6 +81,18 @@ CREATE TABLE `usuarios` (
   `modificado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+CREATE TABLE areas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE cargos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    area_id INT NOT NULL,
+    nombre VARCHAR(150) NOT NULL,
+    FOREIGN KEY (area_id) REFERENCES areas(id)
+);
+
 --
 -- Índices para tablas volcadas
 --
@@ -96,7 +108,6 @@ ALTER TABLE `contacto`
 --
 ALTER TABLE `disponibilidades`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uq_fecha_hora` (`fecha`,`hora`),
   ADD KEY `fk_reserva_disponibilidad` (`reserva_id`);
 
 --
@@ -149,6 +160,197 @@ ALTER TABLE `usuarios`
 ALTER TABLE `disponibilidades`
   ADD CONSTRAINT `fk_reserva_disponibilidad` FOREIGN KEY (`reserva_id`) REFERENCES `reservas` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+-- Agregar columna cargo_id a usuarios
+ALTER TABLE usuarios
+ADD cargo_id INT NULL AFTER password;
+
+ALTER TABLE usuarios
+ADD FOREIGN KEY (cargo_id) REFERENCES cargos(id);
+
+-- Agregar columna cargo_id a disponibilidades
+ALTER TABLE disponibilidades
+ADD cargo_id INT NOT NULL AFTER hora;
+
+ALTER TABLE disponibilidades
+ADD FOREIGN KEY (cargo_id) REFERENCES cargos(id);
+
+-- Nueva restricción por fecha/hora para cada cargo
+ALTER TABLE disponibilidades
+ADD UNIQUE INDEX uq_fecha_hora_cargo (fecha, hora, cargo_id);
+
+INSERT INTO areas (nombre) VALUES
+('Alcaldía'),
+('Concejo Municipal'),
+('Administración Municipal'),
+('Administración y Finanzas'),
+('Control'),
+('Cultura y Biblioteca Municipal'),
+('Combustibles'),
+('Departamento de Salud'),
+('CESFAM de Pinto'),
+('Desarrollo Comunitario'),
+('Deportes'),
+('Discapacidad'),
+('Fomento Productivo'),
+('Informática Municipal'),
+('Inspección Municipal'),
+('Juzgado de Policía Local'),
+('Medio Ambiente'),
+('Oficina Local de la Niñez'),
+('Obras Municipales'),
+('OMIL'),
+('Organizaciones Comunitarias'),
+('PRODESAL'),
+('Rentas y Patentes'),
+('SECPLAN'),
+('Secretaría Municipal'),
+('Seguridad Pública'),
+('Tesorería'),
+('Tránsito y Transporte'),
+('Transparencia y Lobby Municipal'),
+('Turismo'),
+('Vehículos y Maquinaria Pesada');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(1, 'Alcalde'),
+(1, 'Secretaria'),
+(1, 'Gabinete'),
+(1, 'Comunicaciones');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(2, 'Concejal');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(3, 'Administrador Municipal'),
+(3, 'Asesor Jurídico');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(4, 'Director DAF'),
+(4, 'Secretaria Finanzas'),
+(4, 'Profesional Finanzas'),
+(4, 'Remuneraciones'),
+(4, 'Apoyo Recursos Humanos'),
+(4, 'Adquisiciones');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(5, 'Director de Control');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(6, 'Encargado');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(7, 'Encargada');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(8, 'Director DESAMU'),
+(8, 'Secretaria DESAMU');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(9, 'Director CESFAM'),
+(9, 'Secretaria CESFAM'),
+(9, 'Administrativo SOME'),
+(9, 'TENS de Turno Urgencias');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(10, 'Directora de DIDECO'),
+(10, 'Secretaria de DIDECO'),
+(10, 'Asistente Social'),
+(10, 'Subsidios y Pensiones'),
+(10, 'Habitabilidad'),
+(10, 'Apoyo JUNAEB e IPS'),
+(10, 'Programa de Apoyo a la Seguridad Alimentaria'),
+(10, 'Registro Social de Hogares'),
+(10, 'Programa Familias'),
+(10, 'Programa Vínculos'),
+(10, 'SENDA Previene'),
+(10, 'Centro Diurno Pinto');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(11, 'Encargada');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(12, 'Encargada'),
+(12, 'Profesional');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(13, 'Encargado');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(14, 'Encargado');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(15, 'Inspector Municipal');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(16, 'Jueza'),
+(16, 'Abogada / Secretaria'),
+(16, 'Administrativa');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(17, 'Encargado');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(18, 'Coordinadora OLN'),
+(18, 'Gestora de Casos'),
+(18, 'Gestora Territorial');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(19, 'Director'),
+(19, 'Secretaria'),
+(19, 'Inspector I.T.O.'),
+(19, 'Administrativo/a');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(20, 'Encargada'),
+(20, 'Ejecutiva Empresas'),
+(20, 'Orientadora Laboral');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(21, 'Encargada');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(22, 'Coordinador Técnico'),
+(22, 'Ingeniero Agrónomo'),
+(22, 'Medico Veterinario'),
+(22, 'Técnico Agrícola');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(23, 'Jefa de Rentas y Patentes'),
+(23, 'Administrativo/a');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(24, 'Director'),
+(24, 'Arquitecto'),
+(24, 'Asistente Social'),
+(24, 'Profesional'),
+(24, 'Ingeniero Civil');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(25, 'Secretario Municipal'),
+(25, 'Oficina de Partes');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(26, 'Encargado');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(27, 'Tesorero Municipal'),
+(27, 'Secretario');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(28, 'Director'),
+(28, 'Secretaria'),
+(28, 'Administrativa');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(29, 'Encargado');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(30, 'Encargada');
+
+INSERT INTO cargos (area_id, nombre) VALUES
+(31, 'Encargado'),
+(31, 'Apoyo Administrativo');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
